@@ -1,0 +1,353 @@
+<!-- <!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Web Message Widget</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+</head>
+<body>
+
+<p>¡Hola, Esta es una pagina de prueba de Interaxa.</p>
+
+<script>
+	// Initialize Genesys Messenger SDK
+	console.log("Initialize Genesys Messenger SDK");
+	let formSubmitted=false;
+	(function (g, e, n, es, ys) {
+		g['_genesysJs'] = e;
+		g[e] = g[e] || function () {
+		  (g[e].q = g[e].q || []).push(arguments)
+		};
+		g[e].t = 1 * new Date();
+		g[e].c = es;
+		ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+	  })(window, 'Genesys', 'https://apps.sae1.pure.cloud/genesys-bootstrap/genesys.min.js', {
+		environment: 'prod-sae1',
+		deploymentId: '7a33c6d3-92af-48ce-8b06-ec2c7d66615c'
+	  });
+	
+	// Create the floating button
+	const chatButton = document.createElement('div');
+	chatButton.id = 'chatButton';
+	chatButton.className = 'floating-button';
+	chatButton.innerHTML = `<img src="chat-icon.png" alt="Chat" />`;
+	
+	// Create the custom chat widget
+	const chatWidget = document.createElement('div');
+	chatWidget.id = 'chatWidget';
+	chatWidget.className = 'chat-widget';
+	chatWidget.innerHTML = `
+	<div class="chat-header">
+		<img src="logo.png" alt="Chat Icon" class="chat-header-icon" />
+		<button id="closeChat">&times;</button>
+	</div>
+
+	<div class="chat-form-inputs">
+		 <form id="preChatForm">
+			<table>
+				<tr>
+					<th>
+						<label class="chat-control-label" for="name">Nombre completo</label>
+					</th>
+					<td>
+						<input autocomplete="on" class="chat-input chat-form-control" id="name" name="name" maxlength="100" placeholder="Obligatorio" type="text" required>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<label class="chat-control-label" for="email">Correo electrónico</label>
+					</th>
+					<td>
+						<input autocomplete="email" class="chat-input chat-form-control" id="email" name="email" maxlength="100" placeholder="Opcional" type="text">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<label class="chat-control-label" for="asunto">Asunto</label>
+					</th>
+					<td>
+						<input autocomplete="on" class="chat-input chat-form-control" id="asunto" name="asunto" maxlength="100" placeholder="Opcional" type="text">
+					</td>
+				</tr>
+			</table>
+		 </form> 
+	</div>
+	<div class="chat-form-inputs">
+		<table>
+			<tr>
+				<th>
+					<button id="startChatButton">Start Chat</button>
+				</th>
+				<th>
+					<button id="closeChat">Cancelar</button>
+				</th>
+			</tr>
+		</table>
+	</div>
+	`;
+	
+	// Append elements to the body
+	document.body.appendChild(chatButton);
+	document.body.appendChild(chatWidget);
+
+	const closeChat = document.getElementById('closeChat');
+
+	const showCustomButton = () => {
+	  chatButton.style.display = 'flex';
+	};
+
+	const hideCustomButton = () => {
+	  chatButton.style.display = 'none';
+	};
+
+	const openGenesysWidget = () => {
+	  Genesys('command', 'Messenger.open');
+	};
+	
+	closeChat.addEventListener('click', () => {
+	  chatWidget.style.display = 'none';
+	});
+
+	chatButton.addEventListener('click', () => {
+		if(formSubmitted)
+			Genesys("command", "Messenger.open");
+		else
+			chatWidget.style.display = 'block';
+	});
+
+	window.addEventListener('load', () => {
+
+	  Genesys('subscribe', 'Messenger.opened', () => {
+	  console.log("Messenger Opened");
+		hideCustomButton();
+	  });
+
+	  Genesys('subscribe', 'Messenger.closed', function(o){
+	  console.log("Messenger Closed");
+		showCustomButton();
+	  });
+
+	  Genesys('subscribe', 'MessagingService.conversationCleared', function(o){
+	  console.log("Messaging Service Conversation Cleared");
+		formSubmitted=false;
+
+	  });
+
+	  Genesys('subscribe', 'MessagingService.conversationDisconnected', function(o){
+	  console.log("Messaging Service Conversation Disconnected");
+		formSubmitted=false;
+
+	  });
+	  
+	});
+
+	document.getElementById('startChatButton').addEventListener('click', async (e) => {
+	  e.preventDefault();
+	  
+	  // Get user input values
+	  const name = document.getElementById('name').value.trim();
+	  const email = document.getElementById('email').value.trim();
+	  const asunto = document.getElementById('asunto').value.trim();
+	  
+	  let isValid = true;
+
+	  // Validate "name" field
+	  if (name === '') {
+		isValid = false;
+		document.getElementById('name').style.border = '2px solid red';
+	  } else {
+		document.getElementById('name').style.border = ''; // Reset border
+	  }
+	  
+	  // Proceed only if all fields are valid
+	  if (!isValid) {
+		return; // Stop further execution if validation fails
+	  }
+	formSubmitted=true;
+	  const userDetails = { name, email, asunto };
+
+	  await Genesys('command', 'Database.set', {
+		messaging: {
+			customAttributes: {
+			  name: userDetails.name,
+			  email: userDetails.email,
+			  asunto: userDetails.asunto,
+			}
+		}
+	  });
+
+		chatWidget.style.display = 'none';
+		await openGenesysWidget();
+	});
+</script>
+  
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Message Widget</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <p>¡Hola, esta es una página de prueba de Interaxa!</p>
+
+  <script>
+    // Inicialización del SDK de Genesys
+    console.log("Initialize Genesys Messenger SDK");
+    let formSubmitted = false;
+
+    (function (g, e, n, es, ys) {
+      g['_genesysJs'] = e;
+      g[e] = g[e] || function () {
+        (g[e].q = g[e].q || []).push(arguments)
+      };
+      g[e].t = 1 * new Date();
+      g[e].c = es;
+      ys = document.createElement('script');
+      ys.async = 1;
+      ys.src = n;
+      ys.charset = 'utf-8';
+      document.head.appendChild(ys);
+    })(window, 'Genesys', 'https://apps.sae1.pure.cloud/genesys-bootstrap/genesys.min.js', {
+      environment: 'prod-sae1',
+      deploymentId: '7a33c6d3-92af-48ce-8b06-ec2c7d66615c'
+    });
+
+    // Crear botón flotante
+    const chatButton = document.createElement('div');
+    chatButton.id = 'chatButton';
+    chatButton.className = 'floating-button';
+    chatButton.innerHTML = `<img src="chat-icon.png" alt="Chat" />`;
+
+    // Crear widget de chat personalizado
+    const chatWidget = document.createElement('div');
+    chatWidget.id = 'chatWidget';
+    chatWidget.className = 'chat-widget';
+    chatWidget.innerHTML = `
+      <div class="chat-header">
+        <img src="logo.png" alt="Chat Icon" class="chat-header-icon" />
+        <button id="closeChatIcon">&times;</button>
+      </div>
+
+      <div class="chat-form-inputs">
+        <form id="preChatForm">
+          <table>
+            <tr>
+              <th><label for="name">Nombre completo</label></th>
+              <td><input type="text" id="name" name="name" maxlength="100" placeholder="Obligatorio" required></td>
+            </tr>
+            <tr>
+              <th><label for="email">Correo electrónico</label></th>
+              <td><input type="email" id="email" name="email" maxlength="100" placeholder="Opcional"></td>
+            </tr>
+            <tr>
+              <th><label for="asunto">Asunto</label></th>
+              <td><input type="text" id="asunto" name="asunto" maxlength="100" placeholder="Opcional"></td>
+            </tr>
+          </table>
+        </form>
+      </div>
+
+      <div class="chat-form-inputs">
+        <table>
+          <tr>
+            <td><button id="startChatButton">Iniciar Chat</button></td>
+            <td><button id="closeChat">Cancelar</button></td>
+          </tr>
+        </table>
+      </div>
+    `;
+
+    // Agregar elementos al body
+    document.body.appendChild(chatButton);
+    document.body.appendChild(chatWidget);
+
+    const closeChat = () => {
+      chatWidget.style.display = 'none';
+    };
+
+    const showCustomButton = () => {
+      chatButton.style.display = 'flex';
+    };
+
+    const hideCustomButton = () => {
+      chatButton.style.display = 'none';
+    };
+
+    const openGenesysWidget = () => {
+      Genesys('command', 'Messenger.open');
+    };
+
+    // Eventos
+    document.getElementById('closeChat').addEventListener('click', closeChat);
+    document.getElementById('closeChatIcon').addEventListener('click', closeChat);
+
+    chatButton.addEventListener('click', () => {
+      if (formSubmitted) {
+        openGenesysWidget();
+      } else {
+        chatWidget.style.display = 'block';
+      }
+    });
+
+    window.addEventListener('load', () => {
+      Genesys('subscribe', 'Messenger.opened', () => {
+        console.log("Messenger Opened");
+        hideCustomButton();
+      });
+
+      Genesys('subscribe', 'Messenger.closed', () => {
+        console.log("Messenger Closed");
+        showCustomButton();
+      });
+
+      Genesys('subscribe', 'MessagingService.conversationCleared', () => {
+        console.log("Conversation Cleared");
+        formSubmitted = false;
+      });
+
+      Genesys('subscribe', 'MessagingService.conversationDisconnected', () => {
+        console.log("Conversation Disconnected");
+        formSubmitted = false;
+      });
+    });
+
+    document.getElementById('startChatButton').addEventListener('click', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const asunto = document.getElementById('asunto').value.trim();
+
+      let isValid = true;
+
+      if (name === '') {
+        isValid = false;
+        document.getElementById('name').style.border = '2px solid red';
+      } else {
+        document.getElementById('name').style.border = '';
+      }
+
+      if (!isValid) return;
+
+      formSubmitted = true;
+
+      await Genesys('command', 'Database.set', {
+        messaging: {
+          customAttributes: { name, email, asunto }
+        }
+      });
+
+      chatWidget.style.display = 'none';
+      openGenesysWidget();
+    });
+  </script>
+
+</body>
+</html>

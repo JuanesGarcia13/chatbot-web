@@ -1,0 +1,278 @@
+/* Floating Button
+.floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #517460;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.floating-button img {
+  width: 35px;
+  height: 35px;
+}
+
+/* Chat Widget 
+.chat-widget {
+  position: absolute;
+  bottom: 90px;
+  right: 15px;
+  width: 360px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  display: none; /* Initially hidden 
+  z-index: 999999999;
+}
+
+/* Header 
+.chat-header {
+  background-color: #FFFFFF;
+  padding: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.chat-header button {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.chat-form-inputs{
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	font-family: Helvetica;
+	font-size: 13px;
+	color: #78777A;
+	padding: 4px 12px;
+}
+
+.chat-form-inputs button {
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 8px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	background-color: #517460;
+	color: white;
+	cursor: pointer;
+}
+
+.chat-form-inputs table {
+  width: 100%; /* Ensure the table takes full width 
+  border-collapse: collapse;
+  border-spacing: 0 15px;
+  margin-bottom: 20px;
+}
+
+.chat-form-inputs tr:first-child th,
+.chat-form-inputs tr:first-child td {
+  padding-bottom: 10px; /* Extra space below the first row 
+}
+
+.chat-form-inputs th,
+.chat-form-inputs td {
+  padding: 5px; /* Standard padding for all cells *
+}
+
+.chat-form-inputs th {
+	font-size: 12px;
+	text-align: left; /* Align all labels to the left *
+	padding-right: 1px; /* Add spacing between the label and input *
+	vertical-align: middle; /* Center-align label vertically with input *
+	width: 40%; /* Allocate space for the label *
+}
+
+.chat-form-inputs td {
+  width: 60%; /* Allocate space for the input fields *
+
+}
+
+.chat-form-inputs input,
+.chat-form-inputs select {
+  width: 100%; /* Ensure input fields fill the available space *
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box; /* Prevent padding from exceeding container *
+}
+
+.chat-form-inputs label {
+  font-weight: bold; /* Keep the labels bold as per your original style *
+} */
+
+/* Floating Button */
+.floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #517460;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s;
+}
+
+.floating-button:hover {
+  background-color: #415d4e;
+}
+
+.floating-button img {
+  width: 35px;
+  height: 35px;
+}
+
+/* Chat Widget */
+.chat-widget {
+  position: absolute;
+  bottom: 90px;
+  right: 15px;
+  width: 360px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  display: none; /* Initially hidden */
+  z-index: 999999999;
+}
+
+/* Header */
+.chat-header {
+  background-color: #FFFFFF;
+  padding: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.chat-header button {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.chat-header button:hover {
+  color: red;
+}
+
+/* Chat Form */
+.chat-form-inputs {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  font-family: Helvetica;
+  font-size: 13px;
+  color: #78777A;
+  padding: 4px 12px;
+  flex-direction: column;
+}
+
+.chat-form-inputs button {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #517460;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.chat-form-inputs button:hover {
+  background-color: #3d5e4d;
+}
+
+.chat-form-inputs table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0 15px;
+  margin-bottom: 20px;
+}
+
+.chat-form-inputs tr:first-child th,
+.chat-form-inputs tr:first-child td {
+  padding-bottom: 10px;
+}
+
+.chat-form-inputs th,
+.chat-form-inputs td {
+  padding: 5px;
+}
+
+.chat-form-inputs th {
+  font-size: 12px;
+  text-align: left;
+  padding-right: 1px;
+  vertical-align: middle;
+  width: 40%;
+}
+
+.chat-form-inputs td {
+  width: 60%;
+}
+
+.chat-form-inputs input,
+.chat-form-inputs select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.chat-form-inputs label {
+  font-weight: bold;
+}
+
+/* Input error class */
+.input-error {
+  border: 2px solid red !important;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+  .chat-widget {
+    width: 95%;
+    right: 2.5%;
+  }
+
+  .chat-form-inputs th,
+  .chat-form-inputs td {
+    display: block;
+    width: 100%;
+  }
+
+  .chat-form-inputs th {
+    margin-bottom: 4px;
+  }
+}
